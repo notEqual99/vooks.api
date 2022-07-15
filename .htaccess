@@ -9,8 +9,8 @@
     </IfModule>
 
     RewriteEngine On
-    # RewriteCond %{REQUEST_URI} !^public
-    # RewriteRule ^(.*)$ public/$1 [L]
+    RewriteCond %{REQUEST_URI} !^public
+    RewriteRule ^(.*)$ public/$1 [L]
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
