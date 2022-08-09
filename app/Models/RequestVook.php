@@ -12,6 +12,6 @@ class RequestVook extends Model
     protected $table = "book_requests";
 
     protected $fillable = [
-        'title','author','cover_img','status',
+        'title','author','cover_img','message','status'
     ];
 }

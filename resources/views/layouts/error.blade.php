@@ -11,3 +11,7 @@
 @if(session()->has('status'))
 <p class="alert alert-success">{{session('status')}}</p>
 @endif
+
+@if(session()->has('error'))
+<p class="alert alert-warning">{{session('error')}}</p>
+@endif

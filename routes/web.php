@@ -5,27 +5,16 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\BookCategoryController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\ArchivistAuthController;
+use App\Http\Controllers\HomeController;
 
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::get('/',[HomeController::class, 'index'])->name('home');
+Route::get('/vook/{id}', [HomeController::class, 'show'])->name('vook.show');
+Route::get('/about', [HomeController::class, 'about'])->name('about');
+Route::get('/request/vook', [HomeController::class, 'request'])->name('request.book');
+Route::resource('request/book', 'App\Http\Controllers\RequestBookController');
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-// Route::get('/dashboard',function () {
-//     return view('dashboard/index');
-// });
-
+// admin auth
 Route::get('archivist/login', [ArchivistAuthController::class, 'getLogin'])->name('archivist.login');
 Route::post('archivist/login', [ArchivistAuthController::class, 'submitLogin']);
 

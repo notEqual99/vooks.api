@@ -27,6 +27,11 @@ class BookApi extends Controller
 
         try{
             $vooks = Book::where('del_status','false')->orderBy('id','DESC')->paginate(5);
+            // foreach($vooks as $vook){
+            //     $book = Book::where("id",$vook->id)->with('tags')->first();
+            //     $vook->detail = $book;
+            // }
+            // return $vooks;
             return $this->convertJson('success',200,$vooks);
         }catch(\Exception $e){
             return $this->convertJson('fail',503,$e->getMessage());
