@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request as Input;
 
 class HomeController extends Controller
 {
@@ -97,5 +98,29 @@ class HomeController extends Controller
     public function request()
     {
         return view('request_book');
+    }
+
+    public function searchByName(Request $request){
+        date_default_timezone_set('asia/yangon');
+        // return $request;
+
+        $q = Input::get ( 'q' );
+        
+        if($q == !null){
+            $books = Book::with('category')->where('del_status','false')->where('title','LIKE','%'.$q.'%')->orderBy('id','DESC')->paginate(10);
+            
+            foreach($books as $key=>$vs){
+                $image = Book::where('id',$vs->id)->first()->cover_img;
+                $books[$key]->cover_img = $image;
+            }
+
+            if(count($books) > 0){
+                return view('home',compact('books'))->withDetails($books)->withQuery ( $q );
+            }else{
+                return view ('home',compact('books'))->withMessage('No Details found. Try to search again !');
+            } 
+        }else {
+            return redirect('/');
+        }
     }
 }

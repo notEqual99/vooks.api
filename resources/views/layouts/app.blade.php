@@ -24,11 +24,21 @@
 
     <!-- script -->
     <script>
-        $(function() {
-            $(document).click(function (event) {
-                $('.navbar-collapse').collapse('hide');
-            });
+        // $(function() {
+        //     $(document).click(function (event) {
+        //         $('.navbar-collapse').collapse('hide');
+        //     });
+        // });
+
+        $(document).ready(function () {
+        $(document).click(function (event) {
+            var click = $(event.target);
+            var _open = $(".navbar-collapse").hasClass("show");
+            if (_open === true && !click.hasClass("navbar-toggler")) {
+                $(".navbar-toggler").click();
+            }
         });
+    });
     </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>

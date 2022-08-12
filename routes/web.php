@@ -13,6 +13,7 @@ Route::get('/vook/{id}', [HomeController::class, 'show'])->name('vook.show');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/request/vook', [HomeController::class, 'request'])->name('request.book');
 Route::resource('request/book', 'App\Http\Controllers\RequestBookController');
+Route::post('search/vooks', [HomeController::class, 'searchByName'])->name('search.vooks');
 
 // admin auth
 Route::get('archivist/login', [ArchivistAuthController::class, 'getLogin'])->name('archivist.login');
